@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Malik Sports Arena | Aztecs Football Academy</title>
+  <link rel="icon" type="image/png" href="logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{
+  --black:#050505;--dark:#111;--dark2:#1a1a1a;
+  --gold:#D4AF37;--gold2:#f0d060;--gold3:#a87c10;
+  --white:#fff;--lgray:#ccc;
+  --ff:'Bebas Neue',sans-serif;
+  --fb:'Montserrat',sans-serif;
+  --tr:all .38s cubic-bezier(.25,.8,.25,1);
+  --glow:0 0 28px rgba(212,175,55,.4);
+  --glow2:0 0 55px rgba(212,175,55,.6);
+  --nav:70px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--black);color:var(--white);font-family:var(--fb);overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* ── NAV ── */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:var(--nav);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;
+  background:rgba(5,5,5,.94);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(212,175,55,.2);
+  box-shadow:0 4px 28px rgba(0,0,0,.55);
+}
+.n-logo img{height:48px;width:auto;filter:drop-shadow(0 0 8px rgba(212,175,55,.3));transition:var(--tr)}
+.n-logo img:hover{filter:drop-shadow(0 0 18px rgba(212,175,55,.7));transform:scale(1.05)}
+.n-links{display:flex;list-style:none;gap:28px;align-items:center}
+.n-links a{font-size:.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  color:var(--lgray);position:relative;transition:var(--tr)}
+.n-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;
+  background:var(--gold);transition:width .35s ease}
+.n-links a:hover{color:var(--gold)}
+.n-links a:hover::after{width:100%}
+.n-cta{border:1px solid var(--gold)!important;color:var(--gold)!important;padding:8px 18px;border-radius:2px}
+.n-cta::after{display:none!important}
+.n-cta:hover{background:var(--gold)!important;color:var(--black)!important;box-shadow:var(--glow)!important}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;z-index:1001}
+.hbg span{display:block;width:26px;height:2px;background:var(--gold);transition:var(--tr)}
+.hbg.on span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hbg.on span:nth-child(2){opacity:0;transform:translateX(-8px)}
+.hbg.on span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+#mob{display:none;position:fixed;top:var(--nav);left:0;right:0;
+  background:rgba(5,5,5,.97);backdrop-filter:blur(20px);
+  padding:20px 6%;border-bottom:1px solid rgba(212,175,55,.18);z-index:998}
+#mob.on{display:block}
+#mob a{display:block;font-size:.82rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;
+  color:var(--lgray);padding:14px 0;border-bottom:1px solid rgba(212,175,55,.08);transition:var(--tr)}
+#mob a:last-child{border-bottom:none}
+#mob a:hover{color:var(--gold);padding-left:8px}
+
+/* ── HERO BANNER ── */
+.centre-hero{
+  position:relative;
+  padding-top:calc(var(--nav) + 70px);
+  padding-bottom:70px;
+  padding-left:5%;padding-right:5%;
+  overflow:hidden;
+  background:linear-gradient(135deg,#0a0a0a 0%,#0c0a08 50%,#0a0a0a 100%);
+}
+.centre-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 55% 50%,rgba(212,175,55,.09) 0%,transparent 65%);
+  pointer-events:none;
+}
+.ch-grid-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(rgba(212,175,55,.025) 1px,transparent 1px) 0 0 / 60px 60px,
+    linear-gradient(90deg,rgba(212,175,55,.025) 1px,transparent 1px) 0 0 / 60px 60px;
+}
+/* decorative corner accents */
+.ch-corner{position:absolute;pointer-events:none}
+.ch-corner.tl{top:calc(var(--nav) + 16px);left:16px;width:60px;height:60px;
+  border-top:1px solid rgba(212,175,55,.25);border-left:1px solid rgba(212,175,55,.25)}
+.ch-corner.tr{top:calc(var(--nav) + 16px);right:16px;width:60px;height:60px;
+  border-top:1px solid rgba(212,175,55,.25);border-right:1px solid rgba(212,175,55,.25)}
+.ch-corner.bl{bottom:16px;left:16px;width:60px;height:60px;
+  border-bottom:1px solid rgba(212,175,55,.25);border-left:1px solid rgba(212,175,55,.25)}
+.ch-corner.br{bottom:16px;right:16px;width:60px;height:60px;
+  border-bottom:1px solid rgba(212,175,55,.25);border-right:1px solid rgba(212,175,55,.25)}
+
+.hero-inner{position:relative;z-index:2;max-width:1260px;margin:0 auto;
+  display:flex;align-items:center;gap:48px;flex-wrap:wrap}
+.hero-left{flex:1;min-width:280px}
+.back-link{display:inline-flex;align-items:center;gap:8px;
+  font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(212,175,55,.6);margin-bottom:24px;transition:var(--tr)}
+.back-link:hover{color:var(--gold);transform:translateX(-4px)}
+.back-link i{font-size:.7rem}
+.centre-tag{display:inline-flex;align-items:center;gap:10px;
+  font-size:.6rem;font-weight:700;letter-spacing:5px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:12px}
+.centre-tag::before{content:'';display:block;width:28px;height:1px;background:var(--gold);opacity:.5}
+.centre-name{font-family:var(--ff);font-size:clamp(2.4rem,6vw,4.5rem);
+  letter-spacing:3px;line-height:1.02;color:var(--white);margin-bottom:8px}
+.centre-name span{color:var(--gold)}
+.centre-sub{font-size:.8rem;color:rgba(255,255,255,.45);letter-spacing:2px;
+  text-transform:uppercase;font-weight:500;margin-bottom:28px}
+
+.info-pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+.pill{display:inline-flex;align-items:center;gap:8px;
+  padding:9px 16px;border-radius:3px;font-size:.68rem;font-weight:600;
+  letter-spacing:1.5px;text-transform:uppercase;
+  background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.2);color:var(--lgray);
+  transition:var(--tr)}
+.pill:hover{background:rgba(212,175,55,.1);border-color:rgba(212,175,55,.4);color:var(--gold)}
+.pill i{color:var(--gold);font-size:.75rem}
+
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn-g{display:inline-flex;align-items:center;gap:9px;
+  background:linear-gradient(135deg,var(--gold),var(--gold3));
+  color:var(--black);font-family:var(--fb);font-weight:800;font-size:.7rem;
+  letter-spacing:3px;text-transform:uppercase;padding:14px 28px;border-radius:2px;
+  border:none;cursor:pointer;position:relative;overflow:hidden;transition:var(--tr)}
+.btn-g::before{content:'';position:absolute;top:0;left:-110%;width:100%;height:100%;
+  background:rgba(255,255,255,.17);transform:skewX(-22deg);transition:left .45s ease}
+.btn-g:hover::before{left:110%}
+.btn-g:hover{box-shadow:var(--glow2);transform:translateY(-2px)}
+.btn-o{display:inline-flex;align-items:center;gap:9px;background:transparent;
+  color:var(--white);font-family:var(--fb);font-weight:700;font-size:.7rem;
+  letter-spacing:3px;text-transform:uppercase;padding:13px 28px;border-radius:2px;
+  border:1px solid rgba(255,255,255,.25);cursor:pointer;transition:var(--tr)}
+.btn-o:hover{border-color:var(--gold);color:var(--gold);box-shadow:var(--glow);transform:translateY(-2px)}
+
+/* stat panel */
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.18);
+  border-radius:6px;overflow:hidden;flex-shrink:0;width:280px;align-self:center;
+  box-shadow:0 0 40px rgba(212,175,55,.08)}
+.hs{background:rgba(5,5,5,.85);padding:22px 16px;text-align:center;backdrop-filter:blur(10px);
+  transition:var(--tr)}
+.hs:hover{background:rgba(212,175,55,.05)}
+.hs-num{font-family:var(--ff);font-size:1.9rem;color:var(--gold);letter-spacing:2px;line-height:1}
+.hs-lbl{font-size:.52rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
+  color:rgba(255,255,255,.38);margin-top:6px}
+
+.gold-line{width:100%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:.2;position:relative;z-index:1}
+
+/* ── MAIN ── */
+main{max-width:1260px;margin:0 auto;padding:70px 5%}
+
+.s-head{margin-bottom:40px}
+.s-tag{display:flex;align-items:center;gap:10px;font-size:.6rem;font-weight:700;
+  letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.s-tag::before{content:'';display:block;width:24px;height:1px;background:var(--gold);opacity:.6}
+.s-title{font-family:var(--ff);font-size:clamp(1.6rem,3.5vw,2.6rem);
+  letter-spacing:2px;color:var(--white);line-height:1.05}
+.s-title span{color:var(--gold)}
+
+/* ── ADDRESS CARD ── */
+.address-card{
+  background:rgba(255,255,255,.02);border:1px solid rgba(212,175,55,.15);
+  border-radius:10px;padding:32px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:24px;
+  margin-bottom:70px;position:relative;overflow:hidden;
+}
+.address-card::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(212,175,55,.06),transparent 70%);
+  pointer-events:none;
+}
+.ac-item{display:flex;align-items:flex-start;gap:14px}
+.ac-icon{width:42px;height:42px;flex-shrink:0;border-radius:50%;
+  background:rgba(212,175,55,.07);border:1px solid rgba(212,175,55,.22);
+  display:flex;align-items:center;justify-content:center;transition:var(--tr)}
+.ac-item:hover .ac-icon{background:rgba(212,175,55,.14);border-color:var(--gold);box-shadow:var(--glow)}
+.ac-icon i{color:var(--gold);font-size:.88rem}
+.ac-label{font-size:.55rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(212,175,55,.65);margin-bottom:5px}
+.ac-val{font-size:.79rem;color:var(--lgray);line-height:1.6;font-weight:500}
+
+/* ── BATCH SECTION ── */
+.batch-section{margin-bottom:70px}
+.batch-intro{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.85;
+  margin-bottom:36px;max-width:720px;
+  padding-left:14px;border-left:2px solid rgba(212,175,55,.3)}
+
+/* batch cards grid */
+.batch-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;margin-bottom:36px}
+.bc{position:relative;background:rgba(255,255,255,.02);border:1px solid rgba(212,175,55,.15);
+  border-radius:8px;overflow:hidden;transition:var(--tr)}
+.bc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  transform:scaleX(0);transition:transform .4s ease}
+.bc:hover{border-color:rgba(212,175,55,.48);transform:translateY(-6px);
+  box-shadow:0 24px 60px rgba(0,0,0,.55),var(--glow)}
+.bc:hover::before{transform:scaleX(1)}
+.bc-head{padding:22px 26px 18px;border-bottom:1px solid rgba(212,175,55,.1)}
+.bc-badge{display:inline-flex;align-items:center;gap:6px;
+  font-size:.58rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:var(--black);background:linear-gradient(135deg,var(--gold),var(--gold3));
+  padding:4px 10px;border-radius:2px;margin-bottom:10px}
+.bc-badge.special{background:linear-gradient(135deg,#d4af37,#c8960c);
+  box-shadow:0 0 12px rgba(212,175,55,.4)}
+.bc-name{font-family:var(--ff);font-size:1.4rem;letter-spacing:2px;color:var(--white);margin-bottom:6px}
+.bc-time{display:flex;align-items:center;gap:7px;font-size:.8rem;font-weight:700;
+  color:var(--gold);letter-spacing:1px}
+.bc-time i{font-size:.72rem}
+.bc-body{padding:18px 26px 24px}
+.days-label{font-size:.57rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,.3);margin-bottom:10px}
+.days-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.day-chip{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:6px 12px;border-radius:2px;
+  background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.15);
+  color:rgba(255,255,255,.32);transition:var(--tr)}
+.day-chip.active{background:rgba(212,175,55,.14);border-color:var(--gold);color:var(--gold)}
+.day-chip.weekend{background:rgba(212,175,55,.2);border-color:var(--gold2);
+  color:var(--gold2);box-shadow:0 0 8px rgba(212,175,55,.25)}
+.bc-note{font-size:.7rem;color:rgba(255,255,255,.38);font-style:italic;line-height:1.65;
+  padding-top:10px;border-top:1px solid rgba(212,175,55,.07)}
+.bc-note i{color:var(--gold);margin-right:5px}
+
+/* ── WEEKEND HIGHLIGHT BOX ── */
+.weekend-box{
+  background:linear-gradient(135deg,rgba(212,175,55,.07),rgba(212,175,55,.02));
+  border:1px solid rgba(212,175,55,.32);border-radius:10px;
+  padding:32px 32px;position:relative;overflow:hidden;
+  margin-bottom:36px;
+}
+.weekend-box::before{
+  content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;
+  border-radius:50%;background:radial-gradient(circle,rgba(212,175,55,.12),transparent 70%);
+  pointer-events:none;
+}
+.weekend-box::after{
+  content:'★ WEEKEND SPECIAL';
+  position:absolute;top:16px;right:20px;
+  font-family:var(--ff);font-size:.75rem;letter-spacing:3px;
+  color:rgba(212,175,55,.35);
+}
+.wb-header{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.wb-icon{width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(212,175,55,.18),rgba(212,175,55,.06));
+  border:2px solid rgba(212,175,55,.45);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--glow);flex-shrink:0}
+.wb-icon i{color:var(--gold);font-size:1.2rem}
+.wb-title{font-family:var(--ff);font-size:1.5rem;letter-spacing:3px;color:var(--white)}
+.wb-sub{font-size:.62rem;font-weight:600;letter-spacing:2.5px;
+  text-transform:uppercase;color:rgba(212,175,55,.7);margin-top:3px}
+.wb-slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.ws{background:rgba(5,5,5,.65);border:1px solid rgba(212,175,55,.2);
+  border-radius:6px;padding:16px 18px;display:flex;align-items:center;gap:14px;
+  transition:var(--tr)}
+.ws:hover{border-color:var(--gold);background:rgba(212,175,55,.05);transform:translateY(-2px)}
+.ws-dot{width:10px;height:10px;border-radius:50%;background:var(--gold);flex-shrink:0;
+  box-shadow:0 0 10px rgba(212,175,55,.7)}
+.ws-day{font-family:var(--ff);font-size:.9rem;letter-spacing:2px;color:var(--gold)}
+.ws-time{font-size:.74rem;font-weight:600;color:var(--lgray);margin-top:2px}
+
+/* ── TABLE ── */
+.table-wrap{border-radius:8px;overflow:hidden;border:1px solid rgba(212,175,55,.2);
+  box-shadow:0 8px 40px rgba(0,0,0,.4)}
+table{width:100%;border-collapse:collapse}
+thead tr{background:linear-gradient(90deg,rgba(212,175,55,.14),rgba(212,175,55,.06))}
+thead th{padding:15px 20px;text-align:left;font-size:.61rem;font-weight:800;
+  letter-spacing:3px;text-transform:uppercase;color:var(--gold);
+  border-bottom:1px solid rgba(212,175,55,.25)}
+tbody tr{border-bottom:1px solid rgba(212,175,55,.07);transition:background .25s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:rgba(212,175,55,.04)}
+tbody td{padding:15px 20px;font-size:.78rem;color:rgba(255,255,255,.65);vertical-align:middle}
+tbody td:first-child{font-weight:700;color:var(--white)}
+.t-badge{display:inline-flex;align-items:center;gap:5px;
+  font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:4px 10px;border-radius:2px;white-space:nowrap}
+.t-badge.pm{background:rgba(100,180,255,.08);border:1px solid rgba(100,180,255,.25);color:#64b4ff}
+.t-badge.ev{background:rgba(170,100,255,.07);border:1px solid rgba(170,100,255,.25);color:#b97fff}
+.t-badge.sp{background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.38);color:var(--gold)}
+.t-days{display:flex;flex-wrap:wrap;gap:5px}
+.td-chip{font-size:.56rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:3px 8px;border-radius:2px;background:rgba(212,175,55,.07);
+  border:1px solid rgba(212,175,55,.2);color:var(--gold)}
+
+/* ── MAP ── */
+.map-section{margin-bottom:70px}
+.map-embed{position:relative;border-radius:10px;overflow:hidden;
+  border:1px solid rgba(212,175,55,.22);box-shadow:0 0 70px rgba(0,0,0,.65)}
+.map-embed iframe{width:100%;height:440px;display:block;border:none;
+  filter:grayscale(20%) contrast(1.05)}
+.map-overlay-top{position:absolute;top:0;left:0;right:0;height:75px;
+  background:linear-gradient(to bottom,rgba(5,5,5,.6),transparent);
+  pointer-events:none;z-index:2}
+.map-overlay-bottom{position:absolute;bottom:0;left:0;right:0;height:55px;
+  background:linear-gradient(to top,rgba(5,5,5,.6),transparent);
+  pointer-events:none;z-index:2}
+.map-label{position:absolute;top:16px;left:18px;z-index:3;
+  background:rgba(5,5,5,.9);border:1px solid rgba(212,175,55,.4);
+  border-radius:5px;padding:12px 16px;backdrop-filter:blur(12px);
+  display:flex;align-items:center;gap:12px;pointer-events:none}
+.map-label-icon{width:36px;height:36px;border-radius:50%;
+  background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.35);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.map-label-icon i{color:var(--gold);font-size:.9rem}
+.map-label-name{font-family:var(--ff);font-size:1rem;letter-spacing:2px;color:var(--white)}
+.map-label-addr{font-size:.58rem;color:rgba(255,255,255,.38);letter-spacing:1px;margin-top:2px}
+.map-open-btn{
+  position:absolute;bottom:18px;right:18px;z-index:3;
+  display:inline-flex;align-items:center;gap:7px;
+  background:linear-gradient(135deg,var(--gold),var(--gold3));
+  color:var(--black);font-family:var(--fb);font-weight:800;font-size:.62rem;
+  letter-spacing:2px;text-transform:uppercase;padding:11px 20px;
+  border-radius:3px;transition:var(--tr)}
+.map-open-btn:hover{box-shadow:var(--glow2);transform:translateY(-2px)}
+.map-cta{margin-top:16px;text-align:center}
+
+/* ── INFO STRIP ── */
+.info-strip{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;
+  background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.15);
+  border-radius:8px;overflow:hidden;margin-bottom:70px;
+}
+.is-item{background:rgba(5,5,5,.85);padding:22px 20px;
+  display:flex;align-items:center;gap:14px;transition:var(--tr)}
+.is-item:hover{background:rgba(212,175,55,.04)}
+.is-icon{width:40px;height:40px;border-radius:50%;flex-shrink:0;
+  background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.25);
+  display:flex;align-items:center;justify-content:center}
+.is-icon i{color:var(--gold);font-size:.9rem}
+.is-label{font-size:.54rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(212,175,55,.65);margin-bottom:3px}
+.is-val{font-size:.77rem;font-weight:600;color:var(--lgray)}
+
+/* ── FOOTER ── */
+footer{background:#030303;border-top:1px solid rgba(212,175,55,.14);padding:40px 5%}
+.ft-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;
+  gap:12px;max-width:1260px;margin:0 auto}
+.ft-copy{font-size:.7rem;color:rgba(255,255,255,.25)}
+.ft-copy span{color:var(--gold)}
+.ft-links{display:flex;gap:20px}
+.ft-links a{font-size:.65rem;color:rgba(255,255,255,.3);letter-spacing:2px;
+  text-transform:uppercase;transition:var(--tr)}
+.ft-links a:hover{color:var(--gold)}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .75s ease}
+.rv-l{opacity:0;transform:translateX(-36px);transition:opacity .7s ease,transform .75s ease}
+.rv.on,.rv-l.on{opacity:1;transform:none}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  :root{--nav:64px}
+  .n-links{display:none}
+  .hbg{display:flex}
+  .hero-inner{flex-direction:column;gap:32px}
+  .hero-stats{width:100%;grid-template-columns:repeat(3,1fr)}
+  .map-embed iframe{height:320px}
+  .ft-bot{flex-direction:column;text-align:center}
+  .ft-links{justify-content:center}
+  .ch-corner{display:none}
+  table{font-size:.72rem}
+  thead th,tbody td{padding:12px 14px}
+}
+@media(max-width:520px){
+  main{padding:50px 4%}
+  .centre-hero{padding-left:4%;padding-right:4%}
+  .batch-cards{grid-template-columns:1fr}
+  .map-embed iframe{height:260px}
+  .address-card{grid-template-columns:1fr}
+  .weekend-box{padding:22px 18px}
+  .weekend-box::after{display:none}
+  .table-wrap{overflow-x:auto}
+  table{min-width:520px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="nav">
+  <a href="index.html" class="n-logo"><img src="logo.png" alt="Aztecs Football Academy"/></a>
+  <ul class="n-links">
+    <li><a href="index.html#home">Home</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#programs">Programs</a></li>
+    <li><a href="index.html#centers">Centers</a></li>
+    <li><a href="index.html#team">Our Team</a></li>
+    <li><a href="index.html#contact" class="n-cta">Join Now</a></li>
+  </ul>
+  <div class="hbg" id="hbg" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div id="mob">
+  <a href="index.html#home"     onclick="closeNav()">Home</a>
+  <a href="index.html#about"    onclick="closeNav()">About</a>
+  <a href="index.html#programs" onclick="closeNav()">Programs</a>
+  <a href="index.html#centers"  onclick="closeNav()">Centers</a>
+  <a href="index.html#team"     onclick="closeNav()">Our Team</a>
+  <a href="index.html#contact"  onclick="closeNav()">Join The Academy</a>
+</div>
+
+<!-- ═══ HERO BANNER ═══ -->
+<div class="centre-hero">
+  <div class="ch-grid-bg"></div>
+  <div class="ch-corner tl"></div>
+  <div class="ch-corner tr"></div>
+  <div class="ch-corner bl"></div>
+  <div class="ch-corner br"></div>
+
+  <div class="hero-inner">
+    <div class="hero-left">
+      <a href="index.html#centers" class="back-link">
+        <i class="fas fa-arrow-left"></i> Back to Centers
+      </a>
+      <div class="centre-tag">Training Centre · Centre 03</div>
+      <h1 class="centre-name">MALIK <span>SPORTS ARENA</span></h1>
+      <p class="centre-sub">Damar Company Road · Tetavli, Kausa, Mumbra</p>
+      <div class="info-pills">
+        <div class="pill"><i class="fas fa-map-marker-alt"></i> Tetavli, Kausa</div>
+        <div class="pill"><i class="fas fa-layer-group"></i> 2 Active Batches</div>
+        <div class="pill"><i class="fas fa-users"></i> All Age Groups</div>
+        <div class="pill"><i class="fas fa-star"></i> Weekend Special</div>
+      </div>
+      <div class="hero-cta">
+        <a href="#batches" class="btn-g"><i class="fas fa-layer-group"></i> View Batches</a>
+        <a href="https://maps.app.goo.gl/YTkY6PBLJ85ctCoV7" target="_blank" rel="noopener" class="btn-o">
+          <i class="fas fa-map-marker-alt"></i> Open in Maps
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hs">
+        <div class="hs-num">2</div>
+        <div class="hs-lbl">Batches</div>
+      </div>
+      <div class="hs">
+        <div class="hs-num">6</div>
+        <div class="hs-lbl">Days/Wk</div>
+      </div>
+      <div class="hs">
+        <div class="hs-num">All</div>
+        <div class="hs-lbl">Ages</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="gold-line"></div>
+
+<main>
+
+  <!-- ═══ ADDRESS / INFO STRIP ═══ -->
+  <div class="info-strip rv">
+    <div class="is-item">
+      <div class="is-icon"><i class="fas fa-shield-alt"></i></div>
+      <div>
+        <div class="is-label">Venue Name</div>
+        <div class="is-val">Malik Sports Arena</div>
+      </div>
+    </div>
+    <div class="is-item">
+      <div class="is-icon"><i class="fas fa-map-marker-alt"></i></div>
+      <div>
+        <div class="is-label">Location</div>
+        <div class="is-val">Tetavli, Kausa, Mumbra</div>
+      </div>
+    </div>
+    <div class="is-item">
+      <div class="is-icon"><i class="fas fa-calendar-alt"></i></div>
+      <div>
+        <div class="is-label">Training Days</div>
+        <div class="is-val">Mon · Tue · Wed · Thu · Sat · Sun</div>
+      </div>
+    </div>
+    <div class="is-item">
+      <div class="is-icon"><i class="fas fa-clock"></i></div>
+      <div>
+        <div class="is-label">Session Times</div>
+        <div class="is-val">7:00 PM – 9:00 PM</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FULL ADDRESS CARD ═══ -->
+  <div class="address-card rv">
+    <div class="ac-item">
+      <div class="ac-icon"><i class="fas fa-shield-alt"></i></div>
+      <div>
+        <div class="ac-label">Venue Name</div>
+        <div class="ac-val">Malik Sports Arena<br>Near Malik Residency</div>
+      </div>
+    </div>
+    <div class="ac-item">
+      <div class="ac-icon"><i class="fas fa-map-marker-alt"></i></div>
+      <div>
+        <div class="ac-label">Full Address</div>
+        <div class="ac-val">Damar Company Road, Tetavli<br>Kausa, Mumbra, Thane 400612</div>
+      </div>
+    </div>
+    <div class="ac-item">
+      <div class="ac-icon"><i class="fas fa-calendar-check"></i></div>
+      <div>
+        <div class="ac-label">Batch 1 Days</div>
+        <div class="ac-val">Monday · Wednesday · Sunday</div>
+      </div>
+    </div>
+    <div class="ac-item">
+      <div class="ac-icon"><i class="fas fa-calendar-week"></i></div>
+      <div>
+        <div class="ac-label">Batch 2 Days</div>
+        <div class="ac-val">Tuesday · Thursday · Saturday</div>
+      </div>
+    </div>
+    <div class="ac-item">
+      <div class="ac-icon"><i class="fas fa-star"></i></div>
+      <div>
+        <div class="ac-label">Weekend Special</div>
+        <div class="ac-val">Saturday &amp; Sunday included</div>
+      </div>
+    </div>
+    <div class="ac-item">
+      <div class="ac-icon"><i class="fas fa-phone"></i></div>
+      <div>
+        <div class="ac-label">Enquiries</div>
+        <div class="ac-val">Contact the academy for<br>batch enrollment &amp; fees</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BATCHES ═══ -->
+  <div id="batches" class="batch-section">
+    <div class="s-head rv">
+      <div class="s-tag">Schedule</div>
+      <h2 class="s-title">TRAINING <span>BATCHES</span></h2>
+    </div>
+    <p class="batch-intro rv">
+      Malik Sports Arena runs two complementary batches covering every day of the week Monday through Sunday — including a special weekend programme. Choose your preferred batch below.
+    </p>
+
+    <div class="batch-cards">
+
+      <!-- Batch 1 -->
+      <div class="bc rv" style="transition-delay:.05s">
+        <div class="bc-head">
+          <div class="bc-badge"><i class="fas fa-moon"></i> Batch 1 · Evening</div>
+          <div class="bc-name">EVENING BATCH</div>
+          <div class="bc-time"><i class="fas fa-clock"></i> 8:00 PM – 9:00 PM</div>
+        </div>
+        <div class="bc-body">
+          <div class="days-label">Training Days</div>
+          <div class="days-row">
+            <span class="day-chip active">Mon</span>
+            <span class="day-chip">Tue</span>
+            <span class="day-chip active">Wed</span>
+            <span class="day-chip">Thu</span>
+            <span class="day-chip">Fri</span>
+            <span class="day-chip">Sat</span>
+            <span class="day-chip weekend active">Sun</span>
+          </div>
+          <p class="bc-note">
+            <i class="fas fa-info-circle"></i>
+            Monday, Wednesday and Sunday evening sessions. High-intensity drills, positional training and match play. Open to all age groups.
+          </p>
+        </div>
+      </div>
+
+      <!-- Batch 2 -->
+      <div class="bc rv" style="transition-delay:.1s">
+        <div class="bc-head">
+          <div class="bc-badge special"><i class="fas fa-star"></i> Batch 2 · Weekend Special</div>
+          <div class="bc-name">EVENING BATCH</div>
+          <div class="bc-time"><i class="fas fa-clock"></i> 7:00 PM – 8:00 PM</div>
+        </div>
+        <div class="bc-body">
+          <div class="days-label">Training Days</div>
+          <div class="days-row">
+            <span class="day-chip">Mon</span>
+            <span class="day-chip active">Tue</span>
+            <span class="day-chip">Wed</span>
+            <span class="day-chip active">Thu</span>
+            <span class="day-chip">Fri</span>
+            <span class="day-chip weekend active">Sat</span>
+            <span class="day-chip">Sun</span>
+          </div>
+          <p class="bc-note">
+            <i class="fas fa-star"></i>
+            Tuesday, Thursday and Saturday sessions with a dedicated weekend training focus. Includes structured weekend matches and specialist drills.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Weekend Special Highlight -->
+    <div class="weekend-box rv" style="transition-delay:.15s">
+      <div class="wb-header">
+        <div class="wb-icon"><i class="fas fa-star"></i></div>
+        <div>
+          <div class="wb-title">WEEKEND SPECIAL BATCHES</div>
+          <div class="wb-sub">Saturday &amp; Sunday · Premium Training Sessions</div>
+        </div>
+      </div>
+      <div class="wb-slots">
+        <div class="ws">
+          <div class="ws-dot"></div>
+          <div>
+            <div class="ws-day">Saturday</div>
+            <div class="ws-time">7:00 PM – 8:00 PM</div>
+          </div>
+        </div>
+        <div class="ws">
+          <div class="ws-dot"></div>
+          <div>
+            <div class="ws-day">Sunday</div>
+            <div class="ws-time">8:00 PM – 9:00 PM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FULL SCHEDULE TABLE ═══ -->
+  <div class="batch-section rv">
+    <div class="s-head">
+      <div class="s-tag">Quick View</div>
+      <h2 class="s-title">FULL SCHEDULE <span>TABLE</span></h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Batch</th>
+            <th>Training Days</th>
+            <th>Timings</th>
+            <th>Duration</th>
+            <th>Category</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Batch 1</td>
+            <td>
+              <div class="t-days">
+                <span class="td-chip">Mon</span>
+                <span class="td-chip">Wed</span>
+                <span class="td-chip">Sun</span>
+              </div>
+            </td>
+            <td><span class="t-badge ev"><i class="fas fa-moon"></i> 8:00 – 9:00 PM</span></td>
+            <td>60 Minutes</td>
+            <td>All Ages</td>
+            <td>Evening Training</td>
+          </tr>
+          <tr>
+            <td>Batch 2</td>
+            <td>
+              <div class="t-days">
+                <span class="td-chip">Tue</span>
+                <span class="td-chip">Thu</span>
+                <span class="td-chip">Sat</span>
+              </div>
+            </td>
+            <td><span class="t-badge pm"><i class="fas fa-futbol"></i> 7:00 – 8:00 PM</span></td>
+            <td>60 Minutes</td>
+            <td>All Ages</td>
+            <td><span class="t-badge sp">Weekend Special</span></td>
+          </tr>
+          <tr>
+            <td>Weekend</td>
+            <td>
+              <div class="t-days">
+                <span class="td-chip">Sat</span>
+                <span class="td-chip">Sun</span>
+              </div>
+            </td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:5px">
+                <span class="t-badge pm"><i class="fas fa-calendar"></i> Sat 7:00 – 8:00 PM</span>
+                <span class="t-badge ev"><i class="fas fa-calendar"></i> Sun 8:00 – 9:00 PM</span>
+              </div>
+            </td>
+            <td>60 Minutes</td>
+            <td>All Ages</td>
+            <td><span class="t-badge sp"><i class="fas fa-star"></i> Special Sessions</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══ MAP ═══ -->
+  <div class="map-section rv">
+    <div class="s-head">
+      <div class="s-tag">Location</div>
+      <h2 class="s-title">FIND <span>US</span></h2>
+    </div>
+    <div class="map-embed">
+      <div class="map-overlay-top"></div>
+      <div class="map-overlay-bottom"></div>
+      <div class="map-label">
+        <div class="map-label-icon"><i class="fas fa-shield-alt"></i></div>
+        <div>
+          <div class="map-label-name">MALIK SPORTS ARENA</div>
+          <div class="map-label-addr">Damar Company Rd, Tetavli, Kausa, Mumbra · 400612</div>
+        </div>
+      </div>
+      <a href="https://maps.app.goo.gl/YTkY6PBLJ85ctCoV7" target="_blank" rel="noopener" class="map-open-btn">
+        <i class="fas fa-external-link-alt"></i> Open in Google Maps
+      </a>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.2!2d73.025!3d19.168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7bf1e9a3d5e9f%3A0x0!2sMalik+Sports+Arena%2C+Damar+Company+Road%2C+Tetavli%2C+Kausa%2C+Mumbra%2C+Thane+400612!5e0!3m2!1sen!2sin!4v1700000000002"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Malik Sports Arena Location">
+      </iframe>
+    </div>
+    <div class="map-cta">
+      <a href="https://maps.app.goo.gl/YTkY6PBLJ85ctCoV7" target="_blank" rel="noopener" class="btn-g" style="margin:0 auto">
+        <i class="fas fa-map-marker-alt"></i> Get Directions on Google Maps
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<div class="gold-line"></div>
+
+<footer>
+  <div class="ft-bot">
+    <div class="ft-copy">&copy; 2024 <span>Aztecs Football Academy</span>. All rights reserved.</div>
+    <div class="ft-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#centers">Centers</a>
+      <a href="index.html#programs">Programs</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="ft-copy">Mumbra · Thane · Maharashtra</div>
+  </div>
+</footer>
+
+<!-- JS -->
+<script>
+function toggleNav(){
+  document.getElementById('hbg').classList.toggle('on');
+  document.getElementById('mob').classList.toggle('on');
+}
+function closeNav(){
+  document.getElementById('hbg').classList.remove('on');
+  document.getElementById('mob').classList.remove('on');
+}
+
+/* Smooth scroll */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const h=a.getAttribute('href');
+    if(h.length>1){
+      e.preventDefault();
+      const t=document.querySelector(h);
+      if(t)t.scrollIntoView({behavior:'smooth'});
+    }
+  });
+});
+
+/* Reveal on scroll */
+const rvObs=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      const d=parseFloat(en.target.style.transitionDelay||'0')*1000;
+      setTimeout(()=>en.target.classList.add('on'),d);
+      rvObs.unobserve(en.target);
+    }
+  });
+},{threshold:.08});
+document.querySelectorAll('.rv,.rv-l').forEach(el=>rvObs.observe(el));
+</script>
+</body>
+</html>
